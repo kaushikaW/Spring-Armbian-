@@ -1,0 +1,19 @@
+server:
+  port: 8029
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/userdb
+    username: postgres
+    password: pass123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+SpringGate:
+  app:
+    jwtSecret: 1124ee0b525c992f2b95d5579ea4a1db4f936280a1d92e04fb751515c8bc4e88c236dc7bb8349d2604299510e99dba06ee1789676ac00b3c1f93da456c5b8d38c0d4ab4b6abeef041a698445c9a4c990c94c76a71dd0ed3da9fcc0b63203ad0d370ae4aaa2095e67c2cebaf23066fd16177351988c3967dba8059d55441875e5
+    jwtExpirationMs: 86400000
+    refreshExpirationMs: 2592000000
