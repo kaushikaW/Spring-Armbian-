@@ -25,12 +25,12 @@ jobs:
 
       - name: Start containers
         run: |
-          docker-compose down
-          docker-compose up -d
+          docker compose down
+          docker compose up -d
           sleep 20
 
       - name: Check service is running
         run: curl -f http://localhost:8081/api/test/all || exit 1
 
       - name: Show logs
-        run: docker-compose logs
+        run: docker compose logs
