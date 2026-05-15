@@ -8,27 +8,24 @@ on:
 
 jobs:
   build-and-test:
-
     runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Set up JDK 21 (optional now, can even remove)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
 
-      - name: Build with Maven (SKIP TESTS)
-        run: mvn clean package -DskipTests
-
-      - name: Build Docker image
+      - name: Build Docker image (includes Maven inside container)
         run: docker build -t user-service:latest .
 
       - name: Start containers
         run: |
+          docker compose down
           docker compose up -d
           sleep 20
 
