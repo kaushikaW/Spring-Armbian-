@@ -11,8 +11,15 @@ TOKEN="$1"
 apt update -y
 apt install -y curl git docker.io
 
+# allow runner user to use docker
+usermod -aG docker ubuntu
+
+# apply group change without reboot
+newgrp docker || true
+
 systemctl enable docker
 systemctl start docker
+
 
 mkdir -p /actions-runner
 cd /actions-runner
