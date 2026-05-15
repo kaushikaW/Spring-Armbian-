@@ -3,7 +3,7 @@ services:
 
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres_userdb
     restart: always
     environment:
       POSTGRES_DB: userdb
@@ -20,7 +20,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - "8080:8080"
+      - "8081:8081"
     restart: always
 
 volumes:

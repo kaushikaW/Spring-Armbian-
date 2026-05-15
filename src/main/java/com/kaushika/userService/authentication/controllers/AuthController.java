@@ -49,9 +49,6 @@ public class AuthController {
   @Autowired
   JwtUtils jwtUtils;
 
-
-
-
   @PostMapping("/login")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -127,11 +124,4 @@ public class AuthController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
-
-
-
-
-
-
-
 }
