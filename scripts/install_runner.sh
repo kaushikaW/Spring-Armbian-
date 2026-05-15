@@ -12,7 +12,8 @@ apt update -y
 apt install -y curl git docker.io
 
 # allow runner user to use docker
-usermod -aG docker ubuntu
+VM_USER=$(getent passwd 1000 | cut -d: -f1)
+usermod -aG docker $VM_USER
 
 # apply group change without reboot
 newgrp docker || true
