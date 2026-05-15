@@ -22,6 +22,8 @@ services:
     ports:
       - "8081:8081"
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
 
 volumes:
   postgres_data:
