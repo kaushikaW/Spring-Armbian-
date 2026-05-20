@@ -14,23 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21 (optional now, can even remove)
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-
-      - name: Build Docker image (includes Maven inside container)
+      - name: Build Docker image
         run: docker build -t user-service:latest .
 
       - name: Start containers
         run: |
-          docker compose down
-          docker compose up -d
+          docker-compose down
+          docker-compose up -d
           sleep 20
 
-      - name: Check service is running
-        run: curl -f http://localhost:8081/api/test/all || exit 1
+      - name: Test API
+        run: curl -f http://localhost:8081/api/test/all
 
       - name: Show logs
-        run: docker compose logs
+        run: docker-compose logs
