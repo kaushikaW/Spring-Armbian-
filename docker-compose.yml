@@ -1,29 +1,16 @@
-
 services:
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres_userdb
-    restart: always
-    environment:
-      POSTGRES_DB: userdb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: pass123
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql
 
   user-service:
     build: .
     container_name: user-service
-    depends_on:
-      - postgres
+
     ports:
       - "8081:8081"
+
     restart: always
+
     environment:
       SPRING_PROFILES_ACTIVE: docker
-
-volumes:
-  postgres_data:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://10.0.2.4:5432/myappdb
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: pass1234
